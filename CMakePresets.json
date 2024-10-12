@@ -1,0 +1,23 @@
+{
+	"version": 3,
+	"configurePresets": [
+	  {
+	    "name": "default",
+	    "generator": "Ninja",
+	    "binaryDir": "${sourceDir}/build",
+	    "cacheVariables": {
+	      "CMAKE_TOOLCHAIN_FILE": "${env:IDF_PATH}/tools/cmake/toolchain-esp32.cmake",
+	      "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+	    },
+	    "environment": {
+	      "IDF_TARGET": "esp32"
+	    }
+	  }
+	],
+	"buildPresets": [
+	  {
+	    "name": "default",
+	    "configurePreset": "default"
+	  }
+	]
+}
