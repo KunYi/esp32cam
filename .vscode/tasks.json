@@ -26,6 +26,22 @@
 		"problemMatcher": [
 		    "$gcc"
 		]
+	    },
+	    {
+		"label": "Configure CMake",
+		"type": "shell",
+		"command": "cmake",
+		"args": [
+		    "--preset",
+		    "default"
+		],
+		"options": {
+		    "cwd": "${workspaceFolder}"
+		},
+		"problemMatcher": [
+		    "$gcc"
+		]
 	    }
 	]
+
     }

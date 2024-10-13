@@ -1,0 +1,15 @@
+{
+	"cmake.configureOnOpen": true,
+	"cmake.buildDirectory": "${workspaceFolder}/build",
+	"cmake.configureSettings": {
+	    "CMAKE_TOOLCHAIN_FILE": "${env:IDF_PATH}/tools/cmake/toolchain-esp32.cmake"
+	},
+	"cmake.generator": "Ninja",
+	"C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+	"idf.espIdfPath": "${env:IDF_PATH}",
+	"idf.customExtraPaths": "",
+	"idf.pythonBinPath": "${env:IDF_PYTHON_ENV_PATH}/python",
+	"idf.toolsPath": "${env:IDF_PYTHON_ENV_PATH}/../../tools",
+	"cmake.autoSelectActiveFolder": false,
+	"cmake.configureOnEdit": false
+ }
