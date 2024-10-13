@@ -6,13 +6,20 @@ dependencies:
       registry_url: https://components.espressif.com/
       type: service
     version: 2.0.13
+  fb_gfx:
+    dependencies: []
+    source:
+      path: /tmp/esp32cam/components/fb_gfx
+      type: local
+    version: 0.1.0
   idf:
     source:
       type: idf
     version: 5.3.1
 direct_dependencies:
 - espressif/esp32-camera
+- espressif/fb_gfx
 - idf
-manifest_hash: 73125cfa50db07aa25b04c3e10ec48e593870e6b7d9ebc2a8664bf6227c88041
+manifest_hash: 19fbdcd81059046d157e86fed123acb038fb38e0a020198bf834a7e461335345
 target: esp32
 version: 2.0.0
