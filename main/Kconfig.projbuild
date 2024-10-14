@@ -1,5 +1,11 @@
 menu "ESP32CAM Configuration"
 
+    config ESP_HOST_NAME
+        string "Camera Host Name"
+        default ""
+        help
+            Hostname that the camera will advertise over mDNS.
+
     config ESP_WIFI_SSID
         string "WiFi SSID"
         default "esp32cam"
@@ -23,6 +29,7 @@ menu "ESP32CAM Configuration"
         default 4
         help
             Max number of the STA connects to AP.
+
 endmenu
 
 menu "Camera Pins"

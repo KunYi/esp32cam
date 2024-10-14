@@ -6,6 +6,16 @@ dependencies:
       registry_url: https://components.espressif.com/
       type: service
     version: 2.0.13
+  espressif/mdns:
+    component_hash: af6306fe65d637a3683d1cf671508fcedd6b05f9ca029a8815abeab64001fb8d
+    dependencies:
+    - name: idf
+      require: private
+      version: '>=5.0'
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 1.4.0
   fb_gfx:
     dependencies: []
     source:
@@ -19,7 +29,8 @@ dependencies:
 direct_dependencies:
 - espressif/esp32-camera
 - espressif/fb_gfx
+- espressif/mdns
 - idf
-manifest_hash: 19fbdcd81059046d157e86fed123acb038fb38e0a020198bf834a7e461335345
+manifest_hash: a844a616303e2e0c17a4a04097b7ea640a8e5e6193b79a1f1cf43bc1e0a6943e
 target: esp32
 version: 2.0.0
