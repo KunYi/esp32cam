@@ -1,56 +1,86 @@
-| Supported Targets | ESP32 | ESP32-C2 | ESP32-C3 | ESP32-C6 | ESP32-S2 | ESP32-S3 |
-| ----------------- | ----- | -------- | -------- | -------- | -------- | -------- |
+# ESP32CAM with ESP-IDF Project
 
-# Wi-Fi SoftAP Example
+This project ports [Ai-Thinker-Open_ESP32-CAMERA_LAN](https://github.com/Ai-Thinker-Open/Ai-Thinker-Open_ESP32-CAMERA_LAN) to the latest [ESP-IDF v5.3.1](https://github.com/espressif/esp-idf/releases/tag/v5.3.1).
 
-(See the README.md file in the upper level 'examples' directory for more information about examples.)
+## Features
 
-This example shows how to use the Wi-Fi SoftAP functionality of the Wi-Fi driver of ESP for serving as an Access Point.
+- Verified on ESP32CAM with OV2640 camera module
+- Currently supports WIFI_AP mode only
 
-## How to use example
+## Development Environment
 
-SoftAP supports Protected Management Frames(PMF). Necessary configurations can be set using pmf flags. Please refer [Wifi-Security](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-guides/wifi-security.html) for more info.
+- **Operating System**: Ubuntu 22.04
+- **ESP-IDF Version**: v5.3.1
+- **Hardware**: ESP32CAM
 
-### Configure the project
+## Getting Started
 
-Open the project configuration menu (`idf.py menuconfig`).
+### Prerequisites
 
-In the `Example Configuration` menu:
+- Install ESP-IDF v5.3.1 following the [official installation guide](https://docs.espressif.com/projects/esp-idf/en/v5.3.1/esp32/get-started/index.html)
 
-* Set the Wi-Fi configuration.
-    * Set `WiFi SSID`.
-    * Set `WiFi Password`.
+### Installation and Build
 
-Optional: If you need, change the other options according to your requirements.
+1. Clone the repository:
+   ```
+   git clone https://github.com/KunYi/esp32cam.git
+   cd esp32cam
+   ```
 
-### Build and Flash
+2. Set up the ESP-IDF environment:
+   ```
+   . $HOME/esp/esp-idf/export.sh
+   ```
 
-Build the project and flash it to the board, then run the monitor tool to view the serial output:
+3. Build the project:
+   ```
+   idf.py build
+   ```
 
-Run `idf.py -p PORT flash monitor` to build, flash and monitor the project.
+4. Flash the firmware:
+   ```
+   idf.py -p <YOUR_PORT> flash
+   ```
 
-(To exit the serial monitor, type ``Ctrl-]``.)
+5. (Optional) Monitor the serial output:
+   ```
+   idf.py -p <YOUR_PORT> monitor
+   ```
 
-See the Getting Started Guide for all the steps to configure and use the ESP-IDF to build projects.
+For more details, check the [build log](./log/build.log) and [flash log](./log/flash.log).
 
-* [ESP-IDF Getting Started Guide on ESP32](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html)
-* [ESP-IDF Getting Started Guide on ESP32-S2](https://docs.espressif.com/projects/esp-idf/en/latest/esp32s2/get-started/index.html)
-* [ESP-IDF Getting Started Guide on ESP32-C3](https://docs.espressif.com/projects/esp-idf/en/latest/esp32c3/get-started/index.html)
+## Connecting to the Board
 
-## Example Output
+After flashing the firmware, the board will create a Wi-Fi access point. You can connect to it using a web browser:
 
-There is the console output for this example:
+1. Look for the SSID `esp32cam` in your Wi-Fi settings and connect to it.
+   - Password: `esp32cam`
+
+2. Once connected, open a web browser and navigate to either:
+   - `http://AI-THINKER-OV2640-<BOARD_MAC_ADDRESS>.local`
+   - `http://192.168.4.1`
+
+### Example UART Log
 
 ```
-I (917) phy: phy_version: 3960, 5211945, Jul 18 2018, 10:40:07, 0, 0
-I (917) wifi: mode : softAP (30:ae:a4:80:45:69)
-I (917) wifi softAP: wifi_init_softap finished.SSID:myssid password:mypassword
-I (26457) wifi: n:1 0, o:1 0, ap:1 1, sta:255 255, prof:1
-I (26457) wifi: station: 70:ef:00:43:96:67 join, AID=1, bg, 20
-I (26467) wifi softAP: station:70:ef:00:43:96:67 join, AID=1
-I (27657) esp_netif_lwip: DHCP server assigned IP to a station, IP is: 192.168.4.2
+I (1648) esp32cam: wifi_init_softap finished. SSID:esp32cam password:esp32cam channel:8
+I (1648) esp_netif_lwip: DHCP server started on interface WIFI_AP_DEF with IP: 192.168.4.1
+I (1658) camera_httpd: Starting web server on port: '80'
+I (1668) camera_httpd: Starting stream server on port: '81'
+I (1678) camera mdns: AI-THINKER-OV2640-83F624.local
+I (1678) base MAC address: 2C:BC:BB:83:F6:24
+I (1688) main_task: Returned from app_main()
 ```
 
-## Troubleshooting
+## Contributing
 
-For any technical queries, please open an [issue](https://github.com/espressif/esp-idf/issues) on GitHub. We will get back to you soon.
+Contributions to this project are welcome. Please feel free to submit issues and pull requests.
+
+## License
+
+MIT
+
+## Acknowledgments
+
+- [Ai-Thinker-Open](https://github.com/Ai-Thinker-Open) for the original ESP32-CAMERA_LAN project
+- [Espressif Systems](https://github.com/espressif) for the ESP-IDF framework

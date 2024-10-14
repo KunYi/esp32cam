@@ -1,0 +1,168 @@
+$ idf.py -p /dev/ttyUSB0 flash monitor
+
+Executing action: flash
+Running ninja in directory /tmp/esp32cam/build
+Executing "ninja flash"...
+[1/5] cd /tmp/esp32cam/build/esp-idf/esptool_py && /home/kunyi/.espressif/python_env/idf5.3_py3.10_env/bin/python /ho... 0x8000 partition --type app /tmp/esp32cam/build/partition_table/partition-table.bin /tmp/esp32cam/build/esp32cam.bin
+esp32cam.bin binary size 0x106c90 bytes. Smallest app partition is 0x3c0000 bytes. 0x2b9370 bytes (73%) free.
+[1/1] cd /tmp/esp32cam/build/bootloader/esp-idf/esptool_py && /home/kunyi/.espressif/python_env/idf5.3_py3.10_env/bin...onents/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 /tmp/esp32cam/build/bootloader/bootloader.bin
+Bootloader binary size 0x6f50 bytes. 0xb0 bytes (1%) free.
+[4/5] cd /home/kunyi/esp-idf/components/esptool_py && /usr/bin/cmake -D IDF_PATH=/home/kunyi/esp-idf -D "SERIAL_TOOL=...ash_args" -D WORKING_DIRECTORY=/tmp/esp32cam/build -P /home/kunyi/esp-idf/components/esptool_py/run_serial_tool.cmake
+esptool.py --chip esp32 -p /dev/ttyUSB0 -b 460800 --before=default_reset --after=hard_reset write_flash --flash_mode dio --flash_freq 80m --flash_size 4MB 0x1000 bootloader/bootloader.bin 0x10000 esp32cam.bin 0x8000 partition_table/partition-table.bin
+esptool.py v4.8.0
+Serial port /dev/ttyUSB0
+Connecting....
+Chip is ESP32-D0WDQ6-V3 (revision v3.1)
+Features: WiFi, BT, Dual Core, 240MHz, VRef calibration in efuse, Coding Scheme None
+Crystal is 40MHz
+MAC: 2c:bc:bb:83:f6:24
+Uploading stub...
+Running stub...
+Stub running...
+Changing baud rate to 460800
+Changed.
+Configuring flash size...
+Flash will be erased from 0x00001000 to 0x00007fff...
+Flash will be erased from 0x00010000 to 0x00116fff...
+Flash will be erased from 0x00008000 to 0x00008fff...
+SHA digest in image updated
+Compressed 28496 bytes to 17337...
+Writing at 0x00007a5b... (100 %)
+Wrote 28496 bytes (17337 compressed) at 0x00001000 in 0.8 seconds (effective 299.1 kbit/s)...
+Hash of data verified.
+Compressed 1076368 bytes to 681353...
+Writing at 0x0011373c... (100 %)
+Wrote 1076368 bytes (681353 compressed) at 0x00010000 in 16.1 seconds (effective 535.5 kbit/s)...
+Hash of data verified.
+Compressed 3072 bytes to 105...
+Writing at 0x00008000... (100 %)
+Wrote 3072 bytes (105 compressed) at 0x00008000 in 0.0 seconds (effective 499.1 kbit/s)...
+Hash of data verified.
+
+Leaving...
+Hard resetting via RTS pin...
+Executing action: monitor
+Running idf_monitor in directory /tmp/esp32cam
+Executing "/home/kunyi/.espressif/python_env/idf5.3_py3.10_env/bin/python /home/kunyi/esp-idf/tools/idf_monitor.py -p /dev/ttyUSB0 -b 115200 --toolchain-prefix xtensa-esp32-elf- --target esp32 --revision 0 /tmp/esp32cam/build/esp32cam.elf -m '/home/kunyi/.espressif/python_env/idf5.3_py3.10_env/bin/python' '/home/kunyi/esp-idf/tools/idf.py' '-p' '/dev/ttyUSB0'"...
+--- esp-idf-monitor 1.5.0 on /dev/ttyUSB0 115200
+--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H
+ets Jul 29 2019 12:21:46
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:1
+load:0x3fff0030,len:7524
+load:0x40078000,len:16552
+load:0x40080400,len:4
+--- 0x40080400: _init at ??:?
+
+load:0x40080404,len:4312
+entry 0x4008065c
+I (29) boot: ESP-IDF v5.3.1 2nd stage bootloader
+I (29) boot: compile time Oct 14 2024 18:01:19
+I (29) boot: Multicore bootloader
+I (34) boot: chip revision: v3.1
+I (37) qio_mode: Enabling default flash chip QIO
+I (43) boot.esp32: SPI Speed      : 80MHz
+I (47) boot.esp32: SPI Mode       : QIO
+I (52) boot.esp32: SPI Flash Size : 4MB
+I (56) boot: Enabling RNG early entropy source...
+I (62) boot: Partition Table:
+I (65) boot: ## Label            Usage          Type ST Offset   Length
+I (73) boot:  0 factory          factory app      00 00 00010000 003c0000
+I (80) boot:  1 nvs              WiFi data        01 02 003d0000 00004000
+I (88) boot:  2 face_id          unknown          20 20 003e0000 00020000
+I (95) boot: End of partition table
+I (99) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=3af20h (241440) map
+I (170) esp_image: segment 1: paddr=0004af48 vaddr=3ffb0000 size=04a04h ( 18948) load
+I (175) esp_image: segment 2: paddr=0004f954 vaddr=40080000 size=006c4h (  1732) load
+I (176) esp_image: segment 3: paddr=00050020 vaddr=400d0020 size=a9ae0h (695008) map
+I (362) esp_image: segment 4: paddr=000f9b08 vaddr=400806c4 size=1d15ch (119132) load
+I (413) boot: Loaded app from partition at offset 0x10000
+I (413) boot: Disabling RNG early entropy source...
+I (425) quad_psram: This chip is ESP32-D0WD
+I (426) esp_psram: Found 8MB PSRAM device
+I (426) esp_psram: Speed: 80MHz
+I (429) esp_psram: PSRAM initialized, cache is in low/high (2-core) mode.
+W (437) esp_psram: Virtual address not enough for PSRAM, map as much as we can. 4MB is mapped
+I (446) cpu_start: Multicore app
+I (964) esp_psram: SPI SRAM memory test OK
+I (971) cpu_start: Pro cpu start user code
+I (971) cpu_start: cpu freq: 240000000 Hz
+I (971) app_init: Application information:
+I (974) app_init: Project name:     esp32cam
+I (979) app_init: App version:      99b4c40-dirty
+I (985) app_init: Compile time:     Oct 14 2024 18:01:13
+I (991) app_init: ELF file SHA256:  39a9277fc...
+I (996) app_init: ESP-IDF:          v5.3.1
+I (1001) efuse_init: Min chip rev:     v0.0
+I (1006) efuse_init: Max chip rev:     v3.99
+I (1011) efuse_init: Chip rev:         v3.1
+I (1016) heap_init: Initializing. RAM available for dynamic allocation:
+I (1023) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM
+I (1029) heap_init: At 3FFBC0B8 len 00023F48 (143 KiB): DRAM
+I (1035) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM
+I (1042) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM
+I (1048) heap_init: At 4009D820 len 000027E0 (9 KiB): IRAM
+I (1055) esp_psram: Adding pool of 4096K of PSRAM memory to heap allocator
+I (1063) spi_flash: detected chip: generic
+I (1067) spi_flash: flash io: qio
+W (1071) i2c: This driver is an old driver, please migrate your application code to adapt `driver/i2c_master.h`
+I (1082) main_task: Started on CPU0
+I (1092) esp_psram: Reserving pool of 32K of internal memory for DMA/internal allocations
+I (1092) main_task: Calling app_main()
+I (1112) gpio: GPIO[25]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:2
+I (1112) cam_hal: cam init ok
+I (1112) sccb: pin_sda 26 pin_scl 27
+I (1112) sccb: sccb_i2c_port=1
+I (1122) gpio: GPIO[32]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0
+I (1162) camera: Detected camera at address=0x30
+I (1162) camera: Detected OV2640 camera
+I (1162) camera: Camera PID=0x26 VER=0x42 MIDL=0x7f MIDH=0xa2
+W (1242) camera: The frame size exceeds the maximum for this sensor, it will be forced to the maximum possible value
+I (1242) cam_hal: buffer_size: 32768, half_buffer_size: 4096, node_buffer_size: 2048, node_cnt: 16, total_cnt: 93
+I (1252) cam_hal: Allocating 384000 Byte frame buffer in PSRAM
+I (1252) cam_hal: Allocating 384000 Byte frame buffer in PSRAM
+I (1262) cam_hal: Allocating 384000 Byte frame buffer in PSRAM
+I (1272) cam_hal: Allocating 384000 Byte frame buffer in PSRAM
+I (1272) cam_hal: cam config ok
+I (1282) ov2640: Set PLL: clk_2x: 0, clk_div: 0, pclk_auto: 0, pclk_div: 12
+I (1362) ov2640: Set PLL: clk_2x: 0, clk_div: 0, pclk_auto: 0, pclk_div: 12
+I (1402) esp32cam: ESP_WIFI_MODE_AP
+I (1412) wifi:wifi driver task: 3ffd4a40, prio:23, stack:6656, core=0
+I (1412) wifi:wifi firmware version: ccaebfa
+I (1412) wifi:wifi certification version: v7.0
+I (1412) wifi:config NVS flash: enabled
+I (1412) wifi:config nano formating: disabled
+I (1422) wifi:Init data frame dynamic rx buffer num: 32
+I (1422) wifi:Init static rx mgmt buffer num: 5
+I (1432) wifi:Init management short buffer num: 32
+I (1432) wifi:Init static tx buffer num: 16
+I (1432) wifi:Init tx cache buffer num: 32
+I (1442) wifi:Init static rx buffer size: 1600
+I (1442) wifi:Init static rx buffer num: 10
+I (1452) wifi:Init dynamic rx buffer num: 32
+I (1452) wifi_init: rx ba win: 6
+I (1452) wifi_init: accept mbox: 6
+I (1462) wifi_init: tcpip mbox: 32
+I (1462) wifi_init: udp mbox: 6
+I (1472) wifi_init: tcp mbox: 6
+I (1472) wifi_init: tcp tx win: 5760
+I (1472) wifi_init: tcp rx win: 5760
+I (1482) wifi_init: tcp mss: 1440
+I (1482) wifi_init: WiFi IRAM OP enabled
+I (1492) wifi_init: WiFi RX IRAM OP enabled
+I (1492) phy_init: phy_version 4830,54550f7,Jun 20 2024,14:22:08
+I (1562) wifi:mode : softAP (2c:bc:bb:83:f6:25)
+cam_hal: EV-EOF-OVF
+I (1642) wifi:Total power save buffer number: 8
+I (1642) wifi:Init max length of beacon: 752/752
+cam_hal: EV-EOF-OVF
+I (1642) wifi:Init max length of beacon: 752/752
+I (1652) esp32cam: wifi_init_softap finished. SSID:esp32cam password:espI (1662) uart: queue free spaces: 20
+I (1662) camera_httpd: Starting web server on port: '80'
+I (1672) camera_httpd: Starting stream server on port: '81'
+I (1672) camera mdns: AI-THINKER-OV2640-83F624.local
+I (1682) base MAC address: 2C:BC:BB:83:F6:24
+I (1682) main_task: Returned from app_main()
