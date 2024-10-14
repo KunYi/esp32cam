@@ -13,7 +13,7 @@ void app_main()
 {
 	app_camera_main();
 	app_wifi_main();
-	uart_init();
+	// uart_init();
 	app_httpd_main();
 	app_mdns_main();
 
