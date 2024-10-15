@@ -1,4 +1,10 @@
 dependencies:
+  esp-dl:
+    dependencies: []
+    source:
+      path: /tmp/esp32cam/components/esp-dl
+      type: local
+    version: 2.0.1
   espressif/esp32-camera:
     component_hash: a82de4ee0b383bd34695935385c6a6c720129084580c2bbb55dce76eb2a3788f
     dependencies: []
@@ -27,10 +33,11 @@ dependencies:
       type: idf
     version: 5.3.1
 direct_dependencies:
+- espressif/esp-dl
 - espressif/esp32-camera
 - espressif/fb_gfx
 - espressif/mdns
 - idf
-manifest_hash: a844a616303e2e0c17a4a04097b7ea640a8e5e6193b79a1f1cf43bc1e0a6943e
+manifest_hash: 6bc4595047f2225f5facda420a9beb922d8dbfe7f100b2fc5c7c59a736c2c3ca
 target: esp32
 version: 2.0.0
