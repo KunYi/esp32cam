@@ -38,8 +38,10 @@ namespace dl
          */
         inline float sqrt_quick(float x)
         {
-            const int result = 0x1fbb4000 + (*(int *)&x >> 1);
-            return *(float *)&result;
+            union { float f; int i; } u;
+            u.f = x;
+            u.i = 0x1fbb4000 + (u.i >> 1);
+            return u.f;
         }
 
         /**
@@ -51,10 +53,10 @@ namespace dl
         inline float sqrt_reciprocal_quick(float x)
         {
             float xhalf = 0.5f * x;
-            int i = *(int *)&x;             // get bits for floating value
-            i = 0x5f375a86 - (i >> 1);      // gives initial guess y0
-            x = *(float *)&i;               // convert bits back to float
-            x = x * (1.5f - xhalf * x * x); // Newton step, repeating increases accuracy
+            union { float f; int i; } u;
+            u.f = x;                              // get bits for floating value
+            u.i = 0x5f375a86 - (u.i >> 1);        // gives initial guess y0
+            x = u.f * (1.5f - xhalf * u.f * u.f); // Newton step, repeating increases accuracy
             return x;
         }
 
