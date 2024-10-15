@@ -1213,6 +1213,15 @@ static esp_err_t index_handler(httpd_req_t *req)
     }
 }
 
+static esp_err_t favicon_handler(httpd_req_t *req)
+{
+    extern const unsigned char uwings_ico_start[] asm("_binary_uwings_ico_start");    httpd_resp_set_type(req, "text/html");
+    extern const unsigned char uwings_ico_end[] asm("_binary_uwings_ico_end");
+    const size_t uwings_ico_len = uwings_ico_end - uwings_ico_start;
+    httpd_resp_set_type(req, "image/x-icon");
+    return httpd_resp_send(req, (const char *)uwings_ico_start, uwings_ico_len);
+}
+
 static esp_err_t monitor_handler(httpd_req_t *req)
 {
     extern const unsigned char monitor_html_gz_start[] asm("_binary_monitor_html_gz_start");
@@ -1232,6 +1241,12 @@ void app_httpd_main()
         .uri = "/",
         .method = HTTP_GET,
         .handler = index_handler,
+        .user_ctx = NULL};
+
+    httpd_uri_t favicon_uri = {
+        .uri = "/favicon.ico",
+        .method = HTTP_GET,
+        .handler = favicon_handler,
         .user_ctx = NULL};
 
     httpd_uri_t status_uri = {
@@ -1335,6 +1350,8 @@ void app_httpd_main()
     if (httpd_start(&camera_httpd, &config) == ESP_OK)
     {
         httpd_register_uri_handler(camera_httpd, &index_uri);
+        httpd_register_uri_handler(camera_httpd, &favicon_uri);
+
         httpd_register_uri_handler(camera_httpd, &cmd_uri);
         httpd_register_uri_handler(camera_httpd, &status_uri);
         httpd_register_uri_handler(camera_httpd, &capture_uri);
