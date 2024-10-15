@@ -25,21 +25,15 @@ static const char *TAG = "camera_httpd";
 #endif
 
 #if CONFIG_ESP_FACE_DETECT_ENABLED
+#include "face_recognition_tool.hpp"
+#include "face_recognition_112_v1_s16.hpp"
+#include "face_recognition_112_v1_s8.hpp"
+#include "human_face_detect_mnp01.hpp"
+#include "human_face_detect_msr01.hpp"
 
-#if CONFIG_ESP_FACE_DETECT_MTMN
-#include "fd_forward.h"
-#endif
-
-#if CONFIG_ESP_FACE_DETECT_LSSH
-#include "lssh_forward.h"
-#endif
-
-#if CONFIG_ESP_FACE_RECOGNITION_ENABLED
-#include "fr_forward.h"
 
 #define ENROLL_CONFIRM_TIMES 5
 #define FACE_ID_SAVE_NUMBER 7
-#endif
 
 #define FACE_COLOR_WHITE 0x00FFFFFF
 #define FACE_COLOR_BLACK 0x00000000

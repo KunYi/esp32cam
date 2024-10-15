@@ -9,7 +9,7 @@
 #include "esp_log.h"
 #include "sdkconfig.h"
 
-void app_main()
+extern "C" void app_main(void)
 {
 	app_camera_main();
 	app_wifi_main();
