@@ -5,13 +5,28 @@ This project ports [Ai-Thinker-Open_ESP32-CAMERA_LAN](https://github.com/Ai-Thin
 ## Features
 
 - Verified on ESP32CAM with OV2640 camera module
+- Supports Freenove ESP32-S3 WROOM camera board
 - Currently supports WIFI_AP mode only
 
 ## Development Environment
 
 - **Operating System**: Ubuntu 22.04
 - **ESP-IDF Version**: v5.3.1
-- **Hardware**: ESP32CAM
+- **Hardware**:
+  - ESP32CAM (main branch)
+  - Freenove ESP32-S3 WROOM (freenoveS3 branch)
+
+## Hardware Support
+
+### ESP32CAM (main branch)
+- Original ESP32 based camera board
+- OV2640 camera module
+
+### Freenove ESP32-S3 WROOM (freenoveS3 branch)
+- ESP32-S3 based camera board
+- 8MB PSRAM in OCT mode
+- OV2640 camera module
+- Enhanced stack configuration for better stability
 
 ## Getting Started
 
@@ -27,22 +42,31 @@ This project ports [Ai-Thinker-Open_ESP32-CAMERA_LAN](https://github.com/Ai-Thin
    cd esp32cam
    ```
 
-2. Set up the ESP-IDF environment:
+2. Select the appropriate branch:
+   ```
+   # For ESP32CAM
+   git checkout main
+
+   # For Freenove ESP32-S3 WROOM
+   git checkout freenoveS3
+   ```
+
+3. Set up the ESP-IDF environment:
    ```
    . $HOME/esp/esp-idf/export.sh
    ```
 
-3. Build the project:
+4. Build the project:
    ```
    idf.py build
    ```
 
-4. Flash the firmware:
+5. Flash the firmware:
    ```
    idf.py -p <YOUR_PORT> flash
    ```
 
-5. (Optional) Monitor the serial output:
+6. (Optional) Monitor the serial output:
    ```
    idf.py -p <YOUR_PORT> monitor
    ```
@@ -57,19 +81,19 @@ After flashing the firmware, the board will create a Wi-Fi access point. You can
    - Password: `esp32cam`
 
 2. Once connected, open a web browser and navigate to either:
-   - `http://AI-THINKER-OV2640-<BOARD_MAC_ADDRESS>.local`
-   - `http://192.168.4.1`
+   - For ESP32CAM: `http://AI-THINKER-OV2640-<BOARD_MAC_ADDRESS>.local`
+   - For Freenove S3: `http://FREENOVE-S3WROOM-OV2640-<BOARD_MAC_ADDRESS>.local`
+   - Or directly: `http://192.168.4.1`
 
-### Example UART Log
+### Example UART Log (Freenove S3)
 
 ```
-I (1648) esp32cam: wifi_init_softap finished. SSID:esp32cam password:esp32cam channel:8
-I (1648) esp_netif_lwip: DHCP server started on interface WIFI_AP_DEF with IP: 192.168.4.1
-I (1658) camera_httpd: Starting web server on port: '80'
-I (1668) camera_httpd: Starting stream server on port: '81'
-I (1678) camera mdns: AI-THINKER-OV2640-83F624.local
-I (1678) base MAC address: 2C:BC:BB:83:F6:24
-I (1688) main_task: Returned from app_main()
+I (1501) esp32cam: wifi_init_softap finished. SSID:esp32cam password:esp32cam channel:1
+I (1501) esp_netif_lwip: DHCP server started on interface WIFI_AP_DEF with IP: 192.168.4.1
+I (1511) camera_httpd: Starting web server on port: '80'
+I (1521) camera_httpd: Starting stream server on port: '81'
+I (1531) camera mdns: FREENOVE-S3WROOM-OV2640-009504.local
+I (1541) base MAC address: 24:EC:4A:00:95:04
 ```
 
 ## Contributing
@@ -84,3 +108,4 @@ MIT
 
 - [Ai-Thinker-Open](https://github.com/Ai-Thinker-Open) for the original ESP32-CAMERA_LAN project
 - [Espressif Systems](https://github.com/espressif) for the ESP-IDF framework
+- [Freenove](https://github.com/Freenove) for the ESP32-S3 WROOM camera board
