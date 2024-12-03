@@ -51,6 +51,8 @@ config CAMERA_MODEL_M5STACK_WIDE
     bool "M5Stack Camera F (Wide)"
 config CAMERA_MODEL_AI_THINKER
     bool "ESP32-CAM by AI-Thinker"
+config CAMERA_MODEL_FREENOVE_S3WROOM
+    bool "ESP32 S3 WROOM by Freenove"
 config CAMERA_MODEL_CUSTOM
     bool "Custom Camera Pinout"
 endchoice
